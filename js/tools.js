@@ -81,14 +81,11 @@ $("#white").parent().click(function(){
 $("#home").click(function(){
 	$("#container-tools").hide();
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-	screen.style.display = "inline-block";
 	container.style.transform = "none";
 	canvas.width = innerWidth;
 	canvas.height = innerHeight;
 	canvas.style.border = "none";
 	state = "menu";
-
 	$("#levels").show();	
 });
 
