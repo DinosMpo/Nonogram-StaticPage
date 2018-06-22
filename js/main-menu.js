@@ -59,6 +59,7 @@ $("#continueGame").click(function(){
 	$("#levels").show();
 });
 
+//if a level is correct
 for(let i=0; i<allStages.length; i++) {
 	if(isCorrect("correct-" + allStages[i])) {
 		$(".correct-" + allStages[i]).show();
