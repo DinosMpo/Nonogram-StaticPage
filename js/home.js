@@ -1,10 +1,10 @@
 "use strict";
 
-let canvas = document.getElementById("canvas");
-let ctx = canvas.getContext("2d");
-let state = "menu";
-let screen = document.getElementById("screen");
-let container = document.getElementById("container");
+let canvas 		= document.getElementById("canvas");
+let ctx 		= canvas.getContext("2d");
+let state 		= "menu";
+let screen 		= document.getElementById("screen");
+let container	= document.getElementById("container");
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -37,6 +37,7 @@ function introScreen() {
 	}
 }
 
+//Rectangle class
 function Rect(x, y, w, h, dx, color, stroke) {
 	this.x = x;
 	this.y = y;
@@ -67,8 +68,14 @@ function Rect(x, y, w, h, dx, color, stroke) {
 		this.y += this.dx;	
 		this.draw();
 	}
+
+	this.relocate = function(x, y) {
+		this.x = x;
+		this.y = y;
+	}
 }
 
+//X shape class
 function xRect(x, y, w, h, dx, textSize) {
 	this.x = x;
 	this.y = y;
@@ -93,14 +100,21 @@ function xRect(x, y, w, h, dx, textSize) {
 		this.y += this.dx;
 		this.draw();
 	}
+
+	this.relocate = function() {
+		this.x = x;
+		this.y = y;
+	}
 }
 
 let blackRectArray = [];
 let whiteRectArray = [];
 let xRectArray = [];
 
+//Create 30 black rects
 for(let i=0; i<30; i++){
-	let size = Math.random() * 30;
+	// let size = Math.random() * 30;
+	let size = Math.floor(Math.random() * 30) + 5;
 	let x = Math.random() * (innerWidth - size * 2) + size;
 	let y = Math.random() * (innerHeight - size * 2) + size;
 	let dx = Math.random() * 4;
@@ -108,8 +122,10 @@ for(let i=0; i<30; i++){
 	blackRectArray.push(new Rect(x, y, size, size, dx, color));
 }
 
+//Create 30 white rects
 for(let i=0; i<30; i++){
-	let size = Math.random() * 30 ;
+	// let size = Math.random() * 30;
+	let size = Math.floor(Math.random() * 30) + 5;
 	let x = Math.random() * (innerWidth - size * 2) + size;
 	let y = Math.random() * (innerHeight - size * 2) + size;
 	let dx = Math.random() * 4;
@@ -117,27 +133,28 @@ for(let i=0; i<30; i++){
 	whiteRectArray.push(new Rect(x, y, size, size, dx, color));
 }
 
+//Create 30 x shape rects
 for(let i=0; i<30; i++){
-	let size = Math.random() * 30;
+	// let size = Math.random() * 30;
+	let size = Math.floor(Math.random() * 30) + 5;
 	let x = Math.random() * (innerWidth - size * 2) + size;
 	let y = Math.random() * (innerHeight - size * 2) + size;
 	let dx = Math.random() * 4;
-	let textSize = Math.random() * 30;
+	// let textSize = Math.random() * 30;
+	let textSize = Math.floor(Math.random() * 30) + 10;
 	xRectArray.push(new xRect(x, y, size, size, dx, textSize));
 }
 
-var img = new Image();
-img.src = "img/nono222.png";
-
+function clearCanvas() {
+	ctx.clearRect(0,0,canvas.width,canvas.height);	
+}
 
 function animate() {
-	requestAnimationFrame(animate);
 	if(state === "menu") {
-		ctx.clearRect(0, 0, innerWidth, innerHeight);
-		// ctx.drawImage(img, 0, 0, innerWidth, innerHeight);
+		// ctx.clearRect(0, 0, innerWidth, innerHeight);
+		clearCanvas();
 		ctx.drawImage(img, (innerWidth/2)-(img.width/2), (innerHeight/2)-(img.height/2));
 		intro.draw();
-
 		for(var i = 0; i < blackRectArray.length; i++) {
 			blackRectArray[i].update();
 			whiteRectArray[i].update();
@@ -146,6 +163,9 @@ function animate() {
 	}
 }
 
+var img = new Image();
+img.src = "img/nono222.png";
 let intro = new introScreen();
+setInterval(animate, 1000/50);
 
-animate();
+

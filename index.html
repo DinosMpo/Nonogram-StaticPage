@@ -9,11 +9,8 @@
 		<link rel="stylesheet" type="text/css" href="css/levels.css">
 		<link rel="stylesheet" type="text/css" href="css/tools.css">
 		<link rel="stylesheet" type="text/css" href="css/multiplayer.css">
-
-		<style type="text/css">
-
-
-		</style>
+		<link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+		
 	</head>
 
 	<body>
@@ -23,10 +20,46 @@
 				
 				<!-- Canvas -->
 				<canvas id="canvas"></canvas>
+				<!-- Drag tools -->
+				<div id="top"><img src="img/left_right.png"></div>
+				<div id="left"><img src="img/top_down.png"></div>
+				<div id="right"><img src="img/top_down.png"></div>
+				<div id="bottom"><img src="img/left_right.png"></div>			
+				<!-- Wait your turn message -->
+				<div id="waiting-screen" class="black-screen">
+					<h1>Wait your turn..</h1>
+				</div>
+
+				<div id="player-left" class="black-screen">
+					<div id="player-left-popup">
+						<h3 id="player-left-info"></h3>
+						<img src="img/exit.png">
+						<p id="exit-to-menu">Exit to menu</p>
+					</div>
+				</div>
+
+				<!-- <div id="game-menu">
+					
+				</div> -->
 
 				<!-- Tools -->
 				<div id="container-tools">
+					<!-- <div id="info-left">
+
+						<div id="info-stage">
+							<span id="info-current-stage"></span>
+						</div>
+
+					</div> -->
+
+					<div id="info-right">
+						<div id="info-progress">
+							<span id="info-current-progress">0%</span>
+						</div>
+					</div>
+
 					<ul id="tools"></ul>
+					
 				</div>
 				
 				<!-- Menu -->
@@ -71,8 +104,8 @@
 						<img src="img/green-button.png" class="correct-leaf" />Leaf</div>
 					<div class="stage" onclick="createLevel(levels10x10['music'], 'music')">
 						<img src="img/green-button.png" class="correct-music" />Music</div>
-					<div class="stage" onclick="">
-						<img src="img/green-button.png" class="correct-2" />2</div>
+					<div class="stage" onclick="createLevel(levels10x10['tree'], 'tree')">
+						<img src="img/green-button.png" class="correct-tree" />Tree</div>
 					<div class="close-levels10x10">Close</div>
 				</div>
 
@@ -83,16 +116,18 @@
 						<img src="img/green-button.png" class="correct-dolphin" />Dolphin</div>
 					<div class="stage" onclick="createLevel(levels15x15['alarm'], 'alarm')">
 						<img src="img/green-button.png" class="correct-alarm" />Alarm</div>
-					<div class="stage" onclick="createLevel(levels15x15['more music'], 'more music')">
-						<img src="img/green-button.png" class="correct-more music" />More Music</div>
+					<div class="stage" onclick="createLevel(levels15x15['more-music'], 'more-music')">
+						<img src="img/green-button.png" class="correct-more-music" />More Music</div>
 					<div class="close-levels15x15">Close</div>
 				</div>
 
 				<!-- Correct -->
-				<div id="correct">
-					<h2>Correct !</h2>
-					<img src="img/green-button.png" style="width:60px; height:60px; margin: 0 auto;">
-					<p id="continueGame">Continue?</p>
+				<div id="correct" class="black-screen">
+					<div id="correct-popup">
+						<h2>Correct !</h2>
+						<img src="img/green-button.png" style="width:60px; height:60px; margin: 0 auto;">
+						<p id="continueGame">Exit</p>
+					</div>
 				</div>
 
 				<!-- Game lobbie for multiplayer -->
@@ -123,7 +158,9 @@
 
 						<p><b>Undo</b> <img src="img/undo.png">: With this tool you can undo your choice. it can store the last 10 choices you make.</p>
 
-						<p><b>Help</b> <img src="img/white.png">: With this tool you can find out a black cell that is correct. You can use 3 times in a stage</p>
+						<p><b>Clear</b> <img src="img/clear.png">: With this tool you can clear your procress.</p>
+
+						<p><b>Help</b> <img src="img/help.png">: With this tool you can find out a black cell that is correct. You can use 3 times in a stage</p>
 
 						<p><b>Home</b> <img src="img/home.png">: With this tool you can go back to the menu.</p>
 					</div>
@@ -131,19 +168,25 @@
 					<div id="close">X</div>
 				</div>
 
+				<div id="clients-count"></div>
 			</div>
 		</div>
 
 		<script src="js/jquery-3.1.1.js"></script>
+		<!-- <script src="/socket.io/socket.io.js"></script> -->
 
 		<script src="js/nonogram.js"></script>
 		<script src="js/nonogram.drawing.js"></script>
+
 		<script src="js/store.js"></script>
 		<script src="js/stages.js"></script>
+
+		<script src="js/main-menu.js"></script>
 		<script src="js/home.js"></script>
-		<script src="js/tools.js"></script>
+
+		<script src="js/nonogram.multiplayer.js"></script>
 		<script src="js/controls.js"></script>
 		<script src="js/init.js"></script>
-		<script src="js/main-menu.js"></script>
+		<script src="js/tools.js"></script>
 	</body>
 </html>

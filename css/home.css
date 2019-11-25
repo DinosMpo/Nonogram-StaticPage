@@ -20,6 +20,7 @@ body {
   margin: 0 auto;
   padding: 0px;
   position: relative;
+
 }
 
 #container {
@@ -116,7 +117,7 @@ body {
   position: absolute;
   text-align: center;
   margin: 2px;
-  top: 30%;
+  top: 40%;
   transform: translateX(-50%);
   /*-webkit-transform: translateX(-50%); den kserw ti kanei*/
   left: 50%;
@@ -164,8 +165,19 @@ body {
   cursor: pointer;
 }
 
+.black-screen {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.6);
+  top:0;
+  width: 100%;
+  height: 100%;
+}
+
 #correct {
   display: none;
+}
+
+#correct-popup {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -179,7 +191,7 @@ body {
   box-shadow: 1px 3px 5px grey;
 }
 
-#correct p {
+#correct-popup p {
   padding: 0 auto;
   margin: 0 auto;
   cursor: pointer;
@@ -189,11 +201,11 @@ body {
   border: 1px solid black;
 }
 
-#correct p:hover {
+#correct-popup p:hover {
   background: linear-gradient(to bottom right, #e0e0d1, white);
 }
 
-#correct h2 {
+#correct-popup h2 {
   position: relative;
   margin: 0 auto;
   padding: 0 auto;
@@ -203,37 +215,36 @@ body {
 #instructions {
   display: none;
   position: absolute;
-  text-align: center;
-  background: white;
-  border: 1px solid black;
   top: 20%;
   left: 50%;
   transform: translateX(-50%);
   width: 50%;
   height: 50%;
   background: linear-gradient(to bottom right, #e0e0d1, #e0e0d1, #999966);
-  /*font-weight: bold;*/
+  /*background: white;*/
   font-size: 20px;
+  border: 1px solid black;
   border-radius: 30px;
   
 }
 
 #instructions h3 {
   margin: 20px;
+  text-align: center;
 }
 
 #instructions p {
   margin: 0px 30px 30px 30px;
-  text-align: center;
+  /*text-align: center;*/
   /*background: white;*/
   display: block;
 }
 
 #wrapper {
   overflow-y: auto;
-  /*position: relative;*/
-  width: 100%;
+  width: 90%;
   height: 100%;
+  margin: 0 auto;
 }
 
 #close {
@@ -248,5 +259,18 @@ body {
   font-family: "Arial";
   width: 35px;
   height: 35px;
+  text-align: center;
   cursor: pointer;
+  color: white;
+}
+
+#clients-count {
+  display: block;
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  font-weight: bold;
+  font-size: 20px;
+  fonr-family: "Arial";
+  z-index: : 1;
 }
