@@ -57,9 +57,9 @@ $("#continueGame").click(function(){
 	state = "menu";
 	$("#correct").hide();
 	$("#levels").show();
+	$("#clients-count").show();
 });
 
-//if a level is correct
 for(let i=0; i<allStages.length; i++) {
 	if(isCorrect("correct-" + allStages[i])) {
 		$(".correct-" + allStages[i]).show();
@@ -74,14 +74,5 @@ $('#how-to-play').click(function() {
 $("#close").click(function() {
 	$(this).parent().hide();
 	$('#menu').show();
-});
-
-
-//Mulitplayer
-
-
-$('#exit').click(function() {
-	$('#menu').show();
-	$('#game-lobbie').hide();
-	sock.emit('exit', 'Player left the lobby');
+	$("#clients-count").show();
 });
