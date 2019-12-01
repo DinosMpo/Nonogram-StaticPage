@@ -71,7 +71,37 @@ function zoom(scaleFactor, translatePos) {
 	nonogram.drawGrid();
 	nonogram.drawRowNumbers();
 	nonogram.drawColumnNumbers();
-	nonogram.continueProgress(retrieve(currentStage), retrieve('rowNumbersGrid-'+currentStage),retrieve('columnNumbersGrid-'+currentStage));
+	//Ζωγραφίζει τις επιλογές του χρήστη στα κελιά
+	for(let i=0; i<nonogram.emptyGrid.length; i++) {
+		if(nonogram.emptyGrid[i].value === 1){
+			//fil the cell black
+			nonogram.drawBlackCell(nonogram.emptyGrid[i]);
+			nonogram.drawPreview(nonogram.emptyGrid[i]);
+		}else if(nonogram.emptyGrid[i].value === 2) {
+			// nonogram.drawWhiteCell(nonogram.emptyGrid[i]);
+			nonogram.drawXCell(nonogram.emptyGrid[i]);
+			nonogram.drawPreview(nonogram.emptyGrid[i]);
+		}
+	}
+	//Ζωγραφίζει τις επιλογές του χρήστη στα κελιά των αριθμών
+	ctx.beginPath();
+	ctx.strokeStyle = "red";
+	ctx.lineWidth = 3;
+	for(let i=0; i<nonogram.rowNumbersGrid.length; i++) {
+		if(nonogram.rowNumbersGrid[i].value === 1) {
+			ctx.moveTo(nonogram.rowNumbersGrid[i].x+3, (nonogram.rowNumbersGrid[i].y + nonogram.blockSize)-3);
+			ctx.lineTo((nonogram.rowNumbersGrid[i].x + nonogram.blockSize)-3, nonogram.rowNumbersGrid[i].y+3);
+		}
+	}
+
+	for(let i=0; i<nonogram.columnNumbersGrid.length; i++) {
+		if(nonogram.columnNumbersGrid[i].value === 1) {	
+			ctx.moveTo(nonogram.columnNumbersGrid[i].x+3, (nonogram.columnNumbersGrid[i].y + nonogram.blockSize)-3);
+			ctx.lineTo((nonogram.columnNumbersGrid[i].x + nonogram.blockSize)-3, nonogram.columnNumbersGrid[i].y+3);
+		}
+	}
+	ctx.closePath();
+	ctx.stroke();
 	ctx.restore();
 	//otan to zoom den einai sto level 1 na fainontai ta controls
 	if(scaleFactor !== 1) {
@@ -97,7 +127,7 @@ function drag(translatePos) {
 	nonogram.drawGrid();
 	nonogram.drawRowNumbers();
 	nonogram.drawColumnNumbers();
-	nonogram.continueProgress(retrieve(currentStage), retrieve('rowNumbersGrid-'+currentStage),retrieve('columnNumbersGrid-'+currentStage));
+	nonogram.retrieveProgress(retrieve(currentStage), retrieve('rowNumbersGrid-'+currentStage),retrieve('columnNumbersGrid-'+currentStage));
 	// redraw();
 	ctx.restore();
 }
@@ -449,7 +479,7 @@ $(window).resize( () => {
 		ctx.save();
 		ctx.translate(originX,originY);
 		ctx.scale(scaleFactor,scaleFactor);
-		nonogram.continueProgress(retrieve(currentStage), retrieve('rowNumbersGrid-'+currentStage),retrieve('columnNumbersGrid-'+currentStage));
+		nonogram.retrieveProgress(retrieve(currentStage), retrieve('rowNumbersGrid-'+currentStage),retrieve('columnNumbersGrid-'+currentStage));
 		ctx.restore();
 		limitBottom = nonogram.height-myLimit;
 		limitRight = nonogram.width-myLimit;
