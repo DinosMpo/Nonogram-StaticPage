@@ -10,159 +10,117 @@ html, body {
 }
 
 body {
-  background: url(../img/gaming-pattern.png);
-  background-repeat: repeat;
-
+    background: url(../img/gaming-pattern.png);
+    background-repeat: repeat;
 }
 
 #screen {
-  display: block;
-  margin: 0 auto;
-  padding: 0px;
-  position: relative;
-
+    display: block;
+    margin: 0 auto;
+    padding: 0px;
+    position: relative;
+    height: 100%;
 }
 
 #container {
-  position: absolute;
-  /*top: 50%;*/
-  left: 0%;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    display: block;
+}
+
+#game {
   display: block;
+  position: relative;
 }
 
 #canvas {
-  /*border: 1px solid black;*/
   display: block;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
 }
 
 #menu {
+  display: inline-block;
   position: absolute;
-  /*bottom: -200;*/
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+  font-family: Arial;
   bottom: 15%;
   left: 50%;
-  text-align: center;
-  display: inline-block;
   transform: translateX(-50%);
-  font-weight: bold;
+  width: 300px;
 }
 
 #menu ul {
+  display: block;
   list-style-type: none;
   padding: 0;
-  display: block;
 }
 
 #menu li {
-  /*background: yellow;*/
-  background: linear-gradient(to bottom right, grey, white, grey);
-  border: 1px solid black;
+  background: #826e6e;
+  border: 3px solid black;
   margin-bottom: 5px;
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 5px;
   padding-bottom: 5px;
   cursor: pointer;
+  color: white;
 }
 
-#levels {
+#instructions {
   display: none;
-  border: 3px solid black;
-  border-radius: 25px;
   position: absolute;
-  text-align: center;
-  margin: 0 auto;
   top: 40%;
-  transform: translateX(-50%);
-  /*-webkit-transform: translateX(-50%); den kserw ti kanei*/
   left: 50%;
-  background: linear-gradient(to bottom right, #e0e0d1, #f2f2f2, #999966); /*#e0e0d1*/
-  font-weight: bold;
-  box-shadow: 3px 3px 7px grey;
-  width: 150px;
-}
-
-#levels h3 {
-  padding-left: 20px;
-  padding-right: 20px;
-  margin: 0;
-  cursor: default;
-}
-
-#levels div {
-  padding: 5px;
-  cursor: pointer;
-}
-
-#close-levels {
-  cursor: pointer;
-}
-
-.level {
-  text-decoration: none;
-  background: linear-gradient(to bottom right, #e0e0d1, #f2f2f2, #999966);
-  outline: none;
+  transform: translate(-50%, -40%);
+  height: 70%;
+  background: #826e6e;
+  font-size: 25px;
   border: 1px solid black;
-}
-
-.level:hover {
-  background: linear-gradient(to bottom right, #e0e0d1, grey, #cccccc);
+  border-radius: 30px;
   color: white;
+  font-family: Arial;
+  scrollbar-color: white #826e6e;
+  max-width: 900px;
+  min-width: 700px;
 }
 
-#stages {
-  display: none;
-  border: 3px solid black;
-  position: absolute;
+#instructions h3 {
+  margin: 20px;
   text-align: center;
-  margin: 2px;
-  top: 40%;
-  transform: translateX(-50%);
-  /*-webkit-transform: translateX(-50%); den kserw ti kanei*/
-  left: 50%;
-  background: linear-gradient(to bottom right, #e0e0d1, #f2f2f2, #999966); /*#e0e0d1*/
-  font-weight: bold;
-  box-shadow: 3px 3px 7px grey;
-  width: 150px;
 }
 
-#stages h3 {
-  padding-left: 20px;
-  padding-right: 20px;
-  margin: 0;
-  cursor: default;
-  background: linear-gradient(to bottom right, #e0e0d1, #f2f2f2, #999966); /*#e0e0d1*/
-
+#instructions p {
+  margin: 0px 30px 30px 30px;
+  display: block;
 }
 
-.stage {
-  text-decoration: none;
-  background: white;
-  background: linear-gradient(to bottom right, white, #f2f2f2, #999966); /*#e0e0d1*/
+#wrapper {
+  overflow-y: auto;
+  width: 90%;
+  height: 100%;
+  margin: 0 auto;
+}
+
+#close-instructions {
+  display: inline-block;
+  position: absolute;
+  background: #0099ff;
+  border-radius: 40px;
+  border: 1px solid black;
+  top: -15px;
+  left: -15px;
+  font-size: 30px;
+  font-family: "Arial";
+  width: 35px;
+  height: 35px;
+  text-align: center;
   cursor: pointer;
-}
-
-.stage:hover {
-  /*background: linear-gradient(to bottom right, #e0e0d1, grey, #cccccc);*/
   color: white;
-  background: linear-gradient(to bottom right, grey, black, #999966); /*#e0e0d1*/
-}
-
-.levels5x5 {
-  display: none;
-}
-
-.levels10x10 {
-  display: none;
-}
-
-.levels15x15 {
-  display: none;
-}
-
-.close-levels5x5, .close-levels10x10, .close-levels15x15 {
-  cursor: pointer;
 }
 
 .black-screen {
@@ -173,7 +131,7 @@ body {
   height: 100%;
 }
 
-#correct {
+#correct-singleplayer {
   display: none;
 }
 
@@ -181,19 +139,19 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  margin-left: -52px;
-  margin-top: -50px;
+  transform: translate(-50%, -50%);
   text-align: center;
   background: linear-gradient(to bottom right, #e0e0d1, white,  #999966);
   border: 2px solid black;
   border-radius: 30px;
   padding: 10px;
   box-shadow: 1px 3px 5px grey;
+  width: 200px;
 }
 
 #correct-popup p {
-  padding: 0 auto;
-  margin: 0 auto;
+  padding: 10px;
+  margin: 10px;
   cursor: pointer;
   font-weight: bold;
   background: linear-gradient(to bottom right, #e0e0d1, grey);
@@ -212,65 +170,16 @@ body {
   text-align: center;
 }
 
-#instructions {
-  display: none;
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 50%;
-  height: 50%;
-  background: linear-gradient(to bottom right, #e0e0d1, #e0e0d1, #999966);
-  /*background: white;*/
-  font-size: 20px;
-  border: 1px solid black;
-  border-radius: 30px;
-  
-}
-
-#instructions h3 {
-  margin: 20px;
-  text-align: center;
-}
-
-#instructions p {
-  margin: 0px 30px 30px 30px;
-  /*text-align: center;*/
-  /*background: white;*/
-  display: block;
-}
-
-#wrapper {
-  overflow-y: auto;
-  width: 90%;
-  height: 100%;
-  margin: 0 auto;
-}
-
-#close {
-  display: inline-block;
-  position: absolute;
-  background: #0099ff;
-  border-radius: 40px;
-  border: 1px solid black;
-  top: -15px;
-  left: -15px;
-  font-size: 30px;
-  font-family: "Arial";
-  width: 35px;
-  height: 35px;
-  text-align: center;
-  cursor: pointer;
-  color: white;
-}
-
 #clients-count {
   display: block;
   position: absolute;
   bottom: 15px;
   left: 15px;
   font-weight: bold;
-  font-size: 20px;
-  fonr-family: "Arial";
-  z-index: : 1;
+  font-size: 30px;
+  font-family: Arial;
+  background: #826e6e;
+  color: white;
+  border: 3px solid black;
+  padding: 5px;
 }
